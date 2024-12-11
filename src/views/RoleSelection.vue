@@ -24,7 +24,7 @@
         // Contoh logika pemrosesan role
         console.log(`Role yang dipilih: ${role}`);
         if (role === "penjual") {
-          this.$router.push({ name: "PenjualDashboard" }); // Arahkan ke halaman penjual
+          this.$router.push({ name: "RegisterPenjual" }); // Arahkan ke halaman penjual
         } else if (role === "pembeli") {
           this.$router.push({ name: "RegisterForm" }); // Arahkan ke halaman pembeli
         }

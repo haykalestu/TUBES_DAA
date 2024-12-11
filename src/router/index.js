@@ -5,6 +5,10 @@ import ListApart from '@/views/ListApart.vue'
 import LoginForm from '@/views/LoginForm.vue'
 import RegisterForm from '@/views/RegisterForm.vue'
 import RoleSelection from '@/views/RoleSelection.vue'
+import RegisterPenjual from '@/views/RegisterPenjual.vue'
+import HomePage from '@/views/HomePage.vue'
+import ApartDetail from '@/views/ApartDetail.vue'
+
 
 
 const routes = [
@@ -17,6 +21,16 @@ const routes = [
     path: '/view/ListKost',
     name: 'ListKost',
     component: ListKost
+  },
+  {
+    path: '/view/ApartDetail/:id',
+    name: 'ApartDetail',
+    component: ApartDetail
+  },
+  {
+    path: '/view/HomePage',
+    name: 'HomePage',
+    component: HomePage
   },
   {
     path: '/view/ListApart',
@@ -37,6 +51,11 @@ const routes = [
     path: '/view/Roleselection',
     name: 'Roleselection',
     component: RoleSelection
+  },
+  {
+    path: '/view/RegisterPenjual',
+    name: 'RegisterPenjual',
+    component: RegisterPenjual
   },
   {
     path: '/about',
