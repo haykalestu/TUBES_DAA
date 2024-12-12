@@ -48,11 +48,11 @@
           class="apartemen-card"
         >
           <p class="mb-2">{{ apartemen.description }}</p>
-          <p>
-            <strong>Harga:</strong> Rp {{ apartemen.price }} / bulan
-          </p>
+          <p><strong>Harga:</strong> Rp {{ apartemen.price }} / bulan</p>
+
           <b-button
             variant="primary"
+            class="mt-2"
             @click="goToDetails(apartemen.id)"
           >
             Lihat Detail
@@ -73,6 +73,7 @@ export default {
       minPrice: 0,
       maxPrice: Infinity,
       filteredApartemen: [],
+      isAdmin: true, // Set sesuai peran pengguna
     };
   },
   computed: {
@@ -89,30 +90,42 @@ export default {
       },
     },
   },
-  created() {
-    // Memuat data apartemen saat komponen dimuat
-    const store = useApartmentStore();
-    store.loadApartments();
-  },
   methods: {
+    goHome() {
+      this.$router.push("/");
+    },
     goToDetails(id) {
       this.$router.push(`/view/ApartDetail/${id}`);
     },
     filterApartemen() {
-      let filtered = this.apartments.filter(
-        (apartemen) => apartemen.price >= this.minPrice && apartemen.price <= this.maxPrice
+      const filtered = this.apartments.filter(
+        (apartemen) =>
+          apartemen.price >= this.minPrice && apartemen.price <= this.maxPrice
       );
-
       filtered.sort((a, b) => a.price - b.price);
-
       this.filteredApartemen = filtered;
     },
-    goHome() {
-    this.$router.push('/view/HomeView');
-  }
+    editApartemen(apartemen) {
+      // Pindah ke halaman form edit dengan data apartemen
+      this.$router.push({
+        name: "AddApart",
+        query: {
+          id: apartemen.id,
+          name: apartemen.name,
+          price: apartemen.price,
+          address: apartemen.address,
+          facilities: apartemen.facilities.join(", "),
+          image: apartemen.image,
+        },
+      });
+    },
+    deleteApartemen(id) {
+      const store = useApartmentStore();
+      store.deleteApartment(id);
+      this.filterApartemen(); // Perbarui tampilan setelah penghapusan
+    },
   },
 };
-
 </script>
 
 <style scoped>
@@ -131,10 +144,6 @@ h1 {
 .apartemen-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-}
-
-.apartemen-card img {
-  border-bottom: 1px solid #ddd;
 }
 
 button {

@@ -1,19 +1,30 @@
-import { defineStore } from 'pinia';
+// stores/Apartemen.js
+import { defineStore } from "pinia";
 
-export const useApartmentStore = defineStore('apartment', {
+// Di store Apartemen
+export const useApartmentStore = defineStore("apartment", {
   state: () => ({
-    apartments: [],
+    apartments: JSON.parse(localStorage.getItem("apartments")) || [],
   }),
   actions: {
-    loadApartments() {
-      const storedApartments = localStorage.getItem('apartments');
-      if (storedApartments) {
-        this.apartments = JSON.parse(storedApartments);
-      }
-    },
     addApartment(apartment) {
       this.apartments.push(apartment);
-      localStorage.setItem('apartments', JSON.stringify(this.apartments)); // Simpan ke localStorage
+      this.saveToLocalStorage();
+    },
+    updateApartment(updatedApartment) {
+      const index = this.apartments.findIndex(a => a.id === updatedApartment.id);
+      if (index !== -1) {
+        this.apartments.splice(index, 1, updatedApartment);
+        this.saveToLocalStorage();
+      }
+    },
+    deleteApartment(id) {
+      this.apartments = this.apartments.filter(a => a.id !== id);
+      this.saveToLocalStorage();
+    },
+    saveToLocalStorage() {
+      localStorage.setItem("apartments", JSON.stringify(this.apartments));
     },
   },
 });
+
