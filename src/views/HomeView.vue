@@ -6,7 +6,9 @@
       <div class="col">
         <h2 class="highlight-text">Ayo Lihat Lebih Jauh!</h2>
         <CardProduct />
+        
       </div>
+      
     </div>
   </div>
 </template>
@@ -17,12 +19,14 @@ import AppNavbar from '@/components/AppNavbar.vue'
 import AppBanner from '@/components/AppBanner.vue'
 import CardProduct from '@/components/CardProduct.vue';
 
+
 export default {
   name: 'HomeView',
   components: {
     AppNavbar,
     AppBanner,
     CardProduct
+    
   },
 }
 </script>

@@ -4,8 +4,8 @@
       <div class="d-flex justify-content-center gap-4">
         <button 
           class="btn btn-primary" 
-          @click="selectRole('penjual')">
-          Penjual
+          @click="selectRole('admin')">
+          Admin
         </button>
         <button 
           class="btn btn-success" 
@@ -23,8 +23,8 @@
       selectRole(role) {
         // Contoh logika pemrosesan role
         console.log(`Role yang dipilih: ${role}`);
-        if (role === "penjual") {
-          this.$router.push({ name: "RegisterPenjual" }); // Arahkan ke halaman penjual
+        if (role === "admin") {
+          this.$router.push({ name: "AdminLogin" }); // Arahkan ke halaman penjual
         } else if (role === "pembeli") {
           this.$router.push({ name: "RegisterForm" }); // Arahkan ke halaman pembeli
         }

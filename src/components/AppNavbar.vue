@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <div>
       <b-navbar toggleable="lg" type="dark" class="custom-navbar">
-        <b-navbar-brand class="papikos" href="#">
+        <b-navbar-brand class="papikos">
           <i class="bi bi-geo-alt"></i> 
           Papikos
         </b-navbar-brand>

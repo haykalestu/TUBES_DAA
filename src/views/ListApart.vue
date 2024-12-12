@@ -1,6 +1,7 @@
 <template>
   <div class="container mt-4">
     <h1 class="text-center mb-4">Daftar Apartemen</h1>
+    <button class="btn btn-danger mb-3" @click="goHome">Kembali</button>
 
     <!-- Filter Harga -->
     <div class="mb-4">
@@ -12,6 +13,7 @@
             class="form-control"
             placeholder="Harga Minimum"
             v-model.number="minPrice"
+            :min="0"
           />
         </div>
         <div class="col-md-4">
@@ -20,17 +22,24 @@
             class="form-control"
             placeholder="Harga Maksimum"
             v-model.number="maxPrice"
+            :min="minPrice"
           />
         </div>
         <div class="col-md-4">
-          <button class="btn btn-primary w-100" @click="filterApartemen">Cari</button>
+          <button class="btn btn-primary w-100" @click="filterApartemen">
+            Cari
+          </button>
         </div>
       </div>
     </div>
 
     <!-- Daftar Apartemen -->
     <div class="row">
-      <div class="col-md-4 mb-4" v-for="apartemen in filteredApartemen" :key="apartemen.id">
+      <div
+        class="col-md-4 mb-4"
+        v-for="apartemen in filteredApartemen"
+        :key="apartemen.id"
+      >
         <b-card
           :title="apartemen.name"
           :img-src="apartemen.image"
@@ -42,53 +51,69 @@
           <p>
             <strong>Harga:</strong> Rp {{ apartemen.price }} / bulan
           </p>
-          <b-button variant="primary" @click="goToDetails(apartemen.id)">Lihat Detail</b-button>
+          <b-button
+            variant="primary"
+            @click="goToDetails(apartemen.id)"
+          >
+            Lihat Detail
+          </b-button>
         </b-card>
       </div>
     </div>
   </div>
 </template>
 
-
 <script>
+import { useApartmentStore } from "@/stores/Apartemen";
+
 export default {
   name: "ListApart",
   data() {
     return {
-      apartemenList: [
-        { id: 1, name: "Apartemen Cinta", description: "Apartemen dengan fasilitas lengkap dan nyaman, cocok untuk keluarga.", price: 1500000, image: require('@/assets/image/11.jpg') },
-        { id: 2, name: "Apartemen Minimalis", description: "Apartemen minimalis dekat dengan pusat kota, cocok untuk profesional.", price: 2000000, image: require('@/assets/image/12.jpg') },
-        { id: 3, name: "Apartemen Murah", description: "Apartemen terjangkau dengan fasilitas dasar dan nyaman.", price: 800000, image: require('@/assets/image/13.jpg') },
-        { id: 4, name: "Apartemen Elite", description: "Apartemen mewah dengan fasilitas premium dan pemandangan luar biasa.", price: 3000000, image: require('@/assets/image/15.jpg') },
-        { id: 5, name: "Apartemen Hemat", description: "Apartemen dengan harga terjangkau untuk kebutuhan dasar.", price: 1000000, image: require('@/assets/image/14.jpg') },
-        { id: 6, name: "Apartemen Strategis", description: "Lokasi strategis dekat dengan pusat perbelanjaan dan transportasi umum.", price: 2500000, image: require('@/assets/image/16.jpg') },
-        { id: 7, name: "Apartemen Tenang", description: "Apartemen di lingkungan yang tenang dan nyaman.", price: 1200000, image: require('@/assets/image/17.jpg') },
-        { id: 8, name: "Apartemen Eksklusif", description: "Privasi dan kenyamanan terjamin di apartemen eksklusif.", price: 4000000, image: require('@/assets/image/18.jpg') },
-        { id: 9, name: "Apartemen Klasik", description: "Suasana klasik dengan fasilitas modern di tengah kota.", price: 1800000, image: require('@/assets/image/19.jpg') },
-        { id: 10, name: "Apartemen Sederhana", description: "Cocok untuk mahasiswa atau profesional muda dengan budget terbatas.", price: 900000, image: require('@/assets/image/20.jpg') },
-      ],
       minPrice: 0,
       maxPrice: Infinity,
       filteredApartemen: [],
     };
   },
-  mounted() {
-    // Awalnya tampilkan semua apartemen
-    this.filteredApartemen = this.apartemenList;
+  computed: {
+    apartments() {
+      const store = useApartmentStore();
+      return store.apartments;
+    },
+  },
+  watch: {
+    apartments: {
+      immediate: true,
+      handler(newValue) {
+        this.filteredApartemen = newValue;
+      },
+    },
+  },
+  created() {
+    // Memuat data apartemen saat komponen dimuat
+    const store = useApartmentStore();
+    store.loadApartments();
   },
   methods: {
     goToDetails(id) {
       this.$router.push(`/view/ApartDetail/${id}`);
     },
     filterApartemen() {
-      this.filteredApartemen = this.apartemenList.filter(
+      let filtered = this.apartments.filter(
         (apartemen) => apartemen.price >= this.minPrice && apartemen.price <= this.maxPrice
       );
+
+      filtered.sort((a, b) => a.price - b.price);
+
+      this.filteredApartemen = filtered;
     },
+    goHome() {
+    this.$router.push('/view/HomeView');
+  }
   },
 };
-</script>
 
+</script>
 
 <style scoped>
 h1 {

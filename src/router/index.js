@@ -8,6 +8,10 @@ import RoleSelection from '@/views/RoleSelection.vue'
 import RegisterPenjual from '@/views/RegisterPenjual.vue'
 import HomePage from '@/views/HomePage.vue'
 import ApartDetail from '@/views/ApartDetail.vue'
+import AdminLogin from '@/views/AdminLogin.vue'
+import AdminDashboard from '@/views/AdminDashboard.vue'
+
+
 
 
 
@@ -21,6 +25,16 @@ const routes = [
     path: '/view/ListKost',
     name: 'ListKost',
     component: ListKost
+  },
+  {
+    path: '/view/HomeView',
+    name: 'HomeView',
+    component: HomeView
+  },
+  {
+    path: '/view/AdminLogin',
+    name: 'AdminLogin',
+    component: AdminLogin
   },
   {
     path: '/view/ApartDetail/:id',
@@ -51,6 +65,20 @@ const routes = [
     path: '/view/Roleselection',
     name: 'Roleselection',
     component: RoleSelection
+  },
+  {
+    path: "/admin/dashboard",
+    name: "AdminDashboard",
+    component: AdminDashboard,
+    beforeEnter: (to, from, next) => {
+      const isAdmin = localStorage.getItem("isAdmin");
+      if (isAdmin) {
+        next();
+      } else {
+        alert("Akses hanya untuk admin!");
+        next("/view/RoleSelection");
+      }
+    },
   },
   {
     path: '/view/RegisterPenjual',

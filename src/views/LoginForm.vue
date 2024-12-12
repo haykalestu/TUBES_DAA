@@ -34,7 +34,7 @@
           </b-form>
   
           <div class="mt-3 text-center">
-            <p>Belum punya akun? <router-link to="/view/RoleSelection">Daftar Sekarang</router-link></p>
+            <p>Kamu Siapa? <router-link to="/view/RoleSelection">Pilih disini</router-link></p>
           </div>
         </div>
       </div>
