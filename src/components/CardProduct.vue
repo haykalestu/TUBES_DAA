@@ -7,7 +7,7 @@
         <p class="card-description">Tempat tinggal nyaman dengan fasilitas lengkap di pusat kota.</p>
         <div class="card-footer">
           <span class="card-price">Rp 3.500.000 / bulan</span>
-          <button class="btn">Lihat Detail</button>
+          
         </div>
       </div>
     </div>
@@ -18,7 +18,7 @@
         <p class="card-description">Kos kosan dengan desain minimalis dan harga terjangkau.</p>
         <div class="card-footer">
           <span class="card-price">Rp 2.800.000 / bulan</span>
-          <button class="btn">Lihat Detail</button>
+          
         </div>
       </div>
     </div>
@@ -29,7 +29,7 @@
         <p class="card-description">Studio apartemen dengan lokasi strategis dan akses mudah.</p>
         <div class="card-footer">
           <span class="card-price">Rp 4.000.000 / bulan</span>
-          <button class="btn">Lihat Detail</button>
+          
         </div>
       </div>
     </div>
@@ -40,7 +40,7 @@
         <p class="card-description">Kos kosan nyaman di pusat kota, dekat fasilitas umum.</p>
         <div class="card-footer">
           <span class="card-price">Rp 2.200.000 / bulan</span>
-          <button class="btn">Lihat Detail</button>
+          
         </div>
       </div>
     </div>
@@ -51,7 +51,7 @@
         <p class="card-description">Kosan mewah dengan fasilitas premium.</p>
         <div class="card-footer">
           <span class="card-price">Rp 3.000.000 / bulan</span>
-          <button class="btn">Lihat Detail</button>
+          
         </div>
       </div>
     </div>

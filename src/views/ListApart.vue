@@ -33,6 +33,27 @@
       </div>
     </div>
 
+    <!-- Filter Lokasi -->
+    <div class="mb-4">
+      <h5>Filter Lokasi</h5>
+      <div class="row">
+        <div class="col-md-4">
+          <select class="form-control" v-model="selectedCity">
+            <option value="">Pilih Kota</option>
+            <option value="Bandung">Bandung</option>
+            <option value="Cimahi">Cimahi</option>
+            <option value="Cianjur">Cianjur</option>
+            <option value="Sumedang">Sumedang</option>
+          </select>
+        </div>
+        <div class="col-md-4">
+          <button class="btn btn-primary w-100" @click="filterApartemen">
+            Filter Lokasi
+          </button>
+        </div>
+      </div>
+    </div>
+
     <!-- Daftar Apartemen -->
     <div class="row">
       <div
@@ -48,6 +69,7 @@
           class="apartemen-card"
         >
           <p class="mb-2">{{ apartemen.description }}</p>
+          <p><strong>Kota:</strong> {{ apartemen.city }}</p>
           <p><strong>Harga:</strong> Rp {{ apartemen.price }} / bulan</p>
 
           <b-button
@@ -72,8 +94,9 @@ export default {
     return {
       minPrice: 0,
       maxPrice: Infinity,
+      selectedCity: "",
       filteredApartemen: [],
-      isAdmin: true, // Set sesuai peran pengguna
+      isAdmin: true,
     };
   },
   computed: {
@@ -92,21 +115,28 @@ export default {
   },
   methods: {
     goHome() {
-      this.$router.push("/");
+      this.$router.push("/view/UserHome");
     },
     goToDetails(id) {
       this.$router.push(`/view/ApartDetail/${id}`);
     },
     filterApartemen() {
-      const filtered = this.apartments.filter(
-        (apartemen) =>
-          apartemen.price >= this.minPrice && apartemen.price <= this.maxPrice
-      );
-      filtered.sort((a, b) => a.price - b.price);
+      const filtered = this.apartments
+        .filter((apartemen) => {
+          return (
+            apartemen.price >= this.minPrice &&
+            apartemen.price <= this.maxPrice &&
+            (this.selectedCity === "" || apartemen.city === this.selectedCity)
+          );
+        })
+        .sort((a, b) => {
+          const citiesOrder = ["Bandung", "Cimahi", "Cianjur", "Sumedang"];
+          return citiesOrder.indexOf(a.city) - citiesOrder.indexOf(b.city);
+        });
+
       this.filteredApartemen = filtered;
     },
     editApartemen(apartemen) {
-      // Pindah ke halaman form edit dengan data apartemen
       this.$router.push({
         name: "AddApart",
         query: {
@@ -122,7 +152,7 @@ export default {
     deleteApartemen(id) {
       const store = useApartmentStore();
       store.deleteApartment(id);
-      this.filterApartemen(); // Perbarui tampilan setelah penghapusan
+      this.filterApartemen();
     },
   },
 };
@@ -159,6 +189,11 @@ button:hover {
 }
 
 input {
+  border-radius: 10px;
+  padding: 10px;
+}
+
+select {
   border-radius: 10px;
   padding: 10px;
 }

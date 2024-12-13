@@ -1,8 +1,9 @@
 <template>
     <div class="container mt-4">
       <h1 class="text-center mb-4">Daftar Kosan</h1>
+      <button class="btn btn-danger mb-3" @click="goHome">Kembali</button>
   
-      <!-- Filter Harga -->
+      
       <div class="mb-4">
         <h5>Filter Harga</h5>
         <div class="row">
@@ -28,7 +29,7 @@
         </div>
       </div>
   
-      <!-- Daftar Kosan -->
+      
       <div class="row">
         <div class="col-md-4 mb-4" v-for="kosan in filteredKosan" :key="kosan.id">
           <b-card
@@ -72,10 +73,13 @@
       };
     },
     mounted() {
-      // Awalnya tampilkan semua kosan
+      
       this.filteredKosan = this.kosanList;
     },
     methods: {
+      goHome() {
+      this.$router.push("/view/UserHome");
+    },
       goToDetails(id) {
         this.$router.push(`/kosan/${id}`);
       },

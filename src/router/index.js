@@ -10,6 +10,7 @@ import HomePage from '@/views/HomePage.vue'
 import ApartDetail from '@/views/ApartDetail.vue'
 import AdminLogin from '@/views/AdminLogin.vue'
 import AdminDashboard from '@/views/AdminDashboard.vue'
+import UserHome from '@/views/UserHome.vue'
 
 
 
@@ -25,6 +26,11 @@ const routes = [
     path: '/view/ListKost',
     name: 'ListKost',
     component: ListKost
+  },
+  {
+    path: '/view/UserHome',
+    name: 'UserHome',
+    component: UserHome
   },
   {
     path: '/view/HomeView',

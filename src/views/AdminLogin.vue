@@ -42,9 +42,9 @@
       handleLogin() {
         const { username, password } = this.credentials;
         if (username === "admin" && password === "admin123") {
-          // Simpan status login di localStorage
+          
           localStorage.setItem("isAdmin", true);
-          this.$router.push("/admin/dashboard"); // Arahkan ke dashboard admin
+          this.$router.push("/admin/dashboard"); 
         } else {
           alert("Username atau password salah!");
         }

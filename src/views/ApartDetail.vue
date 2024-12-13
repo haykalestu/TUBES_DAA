@@ -22,12 +22,17 @@
     name: "ApartDetail",
     data() {
       return {
-        apartemen: null, // Data apartemen akan disimpan di sini
+        apartemen: null, 
       };
     },
+    methods: {
+        goBack() {
+      this.$router.push('/view/ListApart'); 
+    },
+  },
     created() {
       const store = useApartmentStore();
-      const apartmentId = this.$route.params.id; // Mengambil ID dari URL
+      const apartmentId = this.$route.params.id; 
       this.apartemen = store.apartments.find((apartemen) => apartemen.id === parseInt(apartmentId));
       if (!this.apartemen) {
         console.error('Apartemen tidak ditemukan!');

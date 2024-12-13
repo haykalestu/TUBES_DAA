@@ -36,6 +36,16 @@
         />
       </div>
       <div class="mb-3">
+        <label for="city" class="form-label">Kota</label>
+        <select id="city" class="form-control" v-model="newApart.city" required>
+          <option value="">Pilih Kota</option>
+          <option value="Bandung">Bandung</option>
+          <option value="Cimahi">Cimahi</option>
+          <option value="Cianjur">Cianjur</option>
+          <option value="Sumedang">Sumedang</option>
+        </select>
+      </div>
+      <div class="mb-3">
         <label for="facilities" class="form-label">Fasilitas</label>
         <textarea
           id="facilities"
@@ -69,6 +79,7 @@
           <h5 class="card-title">{{ apartemen.name }}</h5>
           <p><strong>Harga:</strong> Rp {{ apartemen.price }} / bulan</p>
           <p><strong>Alamat:</strong> {{ apartemen.address }}</p>
+          <p><strong>Kota:</strong> {{ apartemen.city }}</p>
           <p><strong>Fasilitas:</strong> {{ apartemen.facilities.join(", ") }}</p>
           <button class="btn btn-warning" @click="editApartemen(apartemen)">Edit</button>
           <button class="btn btn-danger" @click="deleteApartemen(apartemen.id)">Hapus</button>
@@ -88,6 +99,7 @@ export default {
         name: "",
         price: 0,
         address: "",
+        city: "",
         facilities: "",
         image: null,
       },
@@ -141,6 +153,7 @@ export default {
         name: apartemen.name,
         price: apartemen.price,
         address: apartemen.address,
+        city: apartemen.city,
         facilities: apartemen.facilities.join(", "),
         image: apartemen.image,
       };
@@ -152,6 +165,7 @@ export default {
         name: "",
         price: 0,
         address: "",
+        city: "",
         facilities: "",
         image: null,
       };

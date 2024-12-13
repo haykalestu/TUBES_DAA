@@ -6,7 +6,10 @@
           <strong>Mau cari Kost/Apartemen murah?</strong><br />
           Papikos Solusinya!
         </h2>
-        <button class="btn btn-custom" @click="handleOrder">Pesan Sekarang</button>
+        <router-link class="nav-link" to="/view/UserHome">
+          <button class="btn btn-custom" @click="handleOrder">Pesan Sekarang</button>
+        </router-link>
+        
       </div>
 
       <div class="col-md-6 text-center">

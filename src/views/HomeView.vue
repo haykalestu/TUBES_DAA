@@ -14,7 +14,7 @@
 </template>
 
 <script>
-// @ is an alias to /src
+
 import AppNavbar from '@/components/AppNavbar.vue'
 import AppBanner from '@/components/AppBanner.vue'
 import CardProduct from '@/components/CardProduct.vue';
@@ -35,20 +35,20 @@ export default {
 .home {
   background: url('@/assets/image/background1.jpg') no-repeat center center fixed;
   background-size: cover;
-  min-height: 100vh; /* Agar background menutupi seluruh tampilan */
-  color: #fff; /* Warna teks agar kontras dengan background */
+  min-height: 100vh; 
+  color: #fff; 
 }
 
 .container {
-  background-color: rgba(255, 255, 255, 0.8); /* Tambahkan latar belakang semi-transparan pada kontainer */
+  background-color: rgba(255, 255, 255, 0.8); 
   border-radius: 10px;
   padding: 20px;
 }
 
 .highlight-text {
-  font-size: 3rem; /* Ukuran teks lebih besar */
+  font-size: 3rem; 
   font-weight: bold;
-  color: #000000; /* Warna teks cerah agar menarik */
+  color: #000000; 
   text-align: center;
   animation: slideUp 1s ease-out forwards;
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);

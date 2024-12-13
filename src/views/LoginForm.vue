@@ -4,9 +4,9 @@
         <div class="col-md-4">
           <h2 class="text-center mb-4">Login</h2>
   
-          <!-- Form Login -->
+          
           <b-form @submit.prevent="handleLogin">
-            <!-- Email -->
+            
             <b-form-group label="Email" label-for="email-input">
               <b-form-input
                 id="email-input"
@@ -17,7 +17,7 @@
               ></b-form-input>
             </b-form-group>
   
-            <!-- Password -->
+            
             <b-form-group label="Password" label-for="password-input">
               <b-form-input
                 id="password-input"
@@ -28,7 +28,7 @@
               ></b-form-input>
             </b-form-group>
   
-            <!-- Button Login -->
+            
             <b-button type="submit" variant="success" block>Login</b-button>
             <b-button @click="goToHomePage" variant="success" block> <i class="bi bi-arrow-left"></i> Home </b-button>
           </b-form>
@@ -54,11 +54,11 @@
     },
     methods: {
         goToHomePage() {
-      this.$router.push('/'); // Navigasi ke halaman utama
+      this.$router.push('/'); 
     },
       async handleLogin() {
         try {
-          // Kirim permintaan POST ke API backend untuk login
+          
           const response = await axios.post('https://api.example.com/login', {
             email: this.email,
             password: this.password,
