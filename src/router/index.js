@@ -13,6 +13,7 @@ import AdminDashboard from '@/views/AdminDashboard.vue'
 import UserHome from '@/views/UserHome.vue'
 import AdminTambah from '@/views/AdminTambah.vue'
 import AdminDashboard_1 from '@/views/AdminDashboard_1.vue'
+import KostDetail from '@/views/KostDetail.vue'
 
 
 
@@ -27,6 +28,11 @@ const routes = [
     path: '/view/ListKost',
     name: 'ListKost',
     component: ListKost
+  },
+  {
+    path: '/view/Kostdetail/:id',
+    name: 'KostDetail',
+    component: KostDetail
   },
   {
     path: '/view/AdminTambah',

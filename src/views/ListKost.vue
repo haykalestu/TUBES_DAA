@@ -3,9 +3,9 @@
     <h1 class="text-center mb-4">Daftar Kost</h1>
     <button class="btn btn-danger mb-3" @click="goHome">Kembali</button>
 
-    <!-- Filter Harga -->
+    <!-- Filter Harga dan Lokasi -->
     <div class="mb-4">
-      <h5>Filter Harga</h5>
+      <h5>Filter Kost</h5>
       <div class="row">
         <div class="col-md-4">
           <input
@@ -26,18 +26,6 @@
           />
         </div>
         <div class="col-md-4">
-          <button class="btn btn-primary w-100" @click="filterKost">
-            Cari
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Filter Lokasi -->
-    <div class="mb-4">
-      <h5>Filter Lokasi</h5>
-      <div class="row">
-        <div class="col-md-4">
           <select class="form-control" v-model="selectedCity">
             <option value="">Pilih Kota</option>
             <option value="Bandung">Bandung</option>
@@ -46,9 +34,11 @@
             <option value="Sumedang">Sumedang</option>
           </select>
         </div>
-        <div class="col-md-4">
+      </div>
+      <div class="row mt-3">
+        <div class="col-md-12">
           <button class="btn btn-primary w-100" @click="filterKost">
-            Filter Lokasi
+            Terapkan Filter
           </button>
         </div>
       </div>
@@ -84,6 +74,7 @@
     </div>
   </div>
 </template>
+
 
 <script>
 import { useKostStore } from "@/stores/Kost";
@@ -121,20 +112,13 @@ export default {
       this.$router.push(`/view/KostDetail/${id}`);
     },
     filterKost() {
-      const filtered = this.kosts
-        .filter((kost) => {
-          return (
-            kost.price >= this.minPrice &&
-            kost.price <= this.maxPrice &&
-            (this.selectedCity === "" || kost.city === this.selectedCity)
-          );
-        })
-        .sort((a, b) => {
-          const citiesOrder = ["Bandung", "Cimahi", "Cianjur", "Sumedang"];
-          return citiesOrder.indexOf(a.city) - citiesOrder.indexOf(b.city);
-        });
-
-      this.filteredKost = filtered;
+      this.filteredKost = this.kosts.filter((kost) => {
+        const matchesPrice =
+          kost.price >= this.minPrice && kost.price <= this.maxPrice;
+        const matchesCity =
+          this.selectedCity === "" || kost.city === this.selectedCity;
+        return matchesPrice && matchesCity;
+      });
     },
     editKost(kost) {
       this.$router.push({
@@ -157,6 +141,7 @@ export default {
   },
 };
 </script>
+
 
 <style scoped>
 h1 {
