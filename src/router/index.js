@@ -11,7 +11,8 @@ import ApartDetail from '@/views/ApartDetail.vue'
 import AdminLogin from '@/views/AdminLogin.vue'
 import AdminDashboard from '@/views/AdminDashboard.vue'
 import UserHome from '@/views/UserHome.vue'
-
+import AdminTambah from '@/views/AdminTambah.vue'
+import AdminDashboard_1 from '@/views/AdminDashboard_1.vue'
 
 
 
@@ -26,6 +27,11 @@ const routes = [
     path: '/view/ListKost',
     name: 'ListKost',
     component: ListKost
+  },
+  {
+    path: '/view/AdminTambah',
+    name: 'AdminTambah',
+    component: AdminTambah
   },
   {
     path: '/view/UserHome',
@@ -76,15 +82,13 @@ const routes = [
     path: "/admin/dashboard",
     name: "AdminDashboard",
     component: AdminDashboard,
-    beforeEnter: (to, from, next) => {
-      const isAdmin = localStorage.getItem("isAdmin");
-      if (isAdmin) {
-        next();
-      } else {
-        alert("Akses hanya untuk admin!");
-        next("/view/RoleSelection");
-      }
-    },
+    
+  },
+  {
+    path: "/admin/dashboard1",
+    name: "AdminDashboard1",
+    component: AdminDashboard_1,
+    
   },
   {
     path: '/view/RegisterPenjual',

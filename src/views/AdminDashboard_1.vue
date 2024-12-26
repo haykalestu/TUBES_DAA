@@ -1,18 +1,18 @@
 <template>
     <div class="container mt-4">
-      <h1 class="text-center mb-4">Tambah Apartemen</h1>
+      <h1 class="text-center mb-4">Tambah Kost</h1>
       <button class="btn btn-danger mb-3" @click="logout">Kembali</button>
-      <add-apart /> 
+      <add-kost /> 
     </div>
   </template>
   
   <script>
-  import AddApart from "@/components/AddApart.vue";
+  import AddKost from '@/components/AddKost.vue';
   
   export default {
-    name: "AdminDashboard",
+    name: "AdminDashboard1",
     components: {
-      AddApart,
+      AddKost,
     },
     methods: {
       logout() {

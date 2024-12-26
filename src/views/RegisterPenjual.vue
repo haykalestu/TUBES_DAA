@@ -1,5 +1,5 @@
 <template>
-  <h2>ECA CANTIK</h2>
+  <h2>Fitur ini belum ada</h2>
 </template>
 
 <script>

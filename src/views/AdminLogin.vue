@@ -44,7 +44,7 @@
         if (username === "admin" && password === "admin123") {
           
           localStorage.setItem("isAdmin", true);
-          this.$router.push("/admin/dashboard"); 
+          this.$router.push("/view/AdminTambah"); 
         } else {
           alert("Username atau password salah!");
         }
